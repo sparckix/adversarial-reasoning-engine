@@ -1,0 +1,6 @@
+[
+  "Proprietary lab solvency is directly tied to covering its total annual costs (burn + amortized training).",
+  "Enterprise LLM adoption demands a holistic \"production moat\" encompassing data governance, security, compliance, managed tooling, and operational resilience, beyond raw model performance.",
+  "Hyperscalers leverage existing, amortized global infrastructure and enterprise trust to offer these \"production moat\" features for LLMs at marginal incremental cost.",
+  "Hyperscalers achieve high aggregate GPU utilization rates (80-90%) for provisioned capacity, enabling low COMPUTE_PER_MTOK costs."
+]

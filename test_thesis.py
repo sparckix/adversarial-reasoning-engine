@@ -310,11 +310,24 @@ if __name__ == "__main__":
                         print(f"❌ {attacker['role']} generated an exception: {exc}")
                         critiques_text += f"\n\n### Attack from {attacker['role']}:\nFAILED DUE TO EXCEPTION."
             finally:
-                # 2. FORCE ABANDONMENT: Abandon any hanging/zombie attacker threads
                 executor.shutdown(wait=False, cancel_futures=True)
         else:
+            # --- FIXED: Robust Extraction & Assignment ---
             prompt = f"Identify the single most catastrophic assumption in this thesis using tools if needed: {thesis}"
-            critiques_text = safe_generate(prompt, config=ATTACKER_CONFIG).text
+            response = safe_generate(prompt, config=ATTACKER_CONFIG)
+            
+            try:
+                # 1. Directly assign to critiques_text to avoid losing the AI's attack
+                # The .text property raises a ValueError if the response was blocked by safety filters
+                critiques_text = response.text if response and response.text else "⚠️ Attacker response was empty."
+            except (ValueError, AttributeError) as exc:
+                # 2. Capture and log safety blocks or empty candidates
+                error_info = f"⚠️ Attack BLOCKED (Possible Safety Filter): {str(exc)}"
+                if response and hasattr(response, 'candidates') and response.candidates:
+                    reason = response.candidates[0].finish_reason
+                    error_info = f"⚠️ Attack BLOCKED BY SAFETY FILTERS. Reason: {reason}"             
+                print(f"\n🛑 {error_info}")
+                critiques_text = error_info
 
         # --- LEVEL 3: THE FALSIFICATION SUITE (The "Tester") ---
         print("⚙️ Executing Falsification Suite (Level 3)...")

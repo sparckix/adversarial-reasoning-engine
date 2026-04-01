@@ -41,3 +41,5 @@
 | Mistral 7B inference cost per 1M tokens | MISTRAL7B_COST | $0.10–$0.25/1M | Together AI, Fireworks pricing for Mistral 7B |
 | Llama 3.1 8B vs GPT-3.5-turbo: MMLU comparison | L8B_VS_GPT35 | Llama 3.1 8B: 73.0% vs GPT-3.5: 70.0% | Meta AI Llama 3.1 technical report; parity on standard benchmarks |
 | Scaling law compute-optimal token ratio | CHINCHILLA | 20 tokens per parameter (Chinchilla optimal) | Hoffmann et al. 2022; D = 20 × N for compute-optimal training |
+
+ContextOpenAI March 2026 ValuationOAI_VAL_2026$300B+ USDMarch 2026 reality check; successful funding roundOpenAI March 2026 ARROAI_REV_2026~$10B+ USDMarch 2026 reality check; updated revenue run rateOpenAI 2025 Solvency ResultOAI_SOLVENCY_2025FAILED (Insolvent prediction false)March 2026 reality check; OpenAI continued operations past Dec 2025Demand Elasticity (Jevons Paradox)DEMAND_ELASTICITYHigh (Volume > Price Collapse)March 2026 reality check; revenue growth sustained by volume expansion
