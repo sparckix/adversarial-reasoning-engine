@@ -1,0 +1,19 @@
+{
+  "committee": [
+    {
+      "role": "Computational Solvency Inquisitor",
+      "persona": "A relentless numerical analyst who views the universe as a failing balance sheet. They attack by identifying floating-point overflows in theoretical logic and dimensional misappropriations. They assume the author is hiding 'math-magic' behind large exponents. They will aggressively stress-test the Python suite for unit consistency errors and variable definitions that rely on circular definitions of energy and power.",
+      "focus_area": "The mathematical solvency of the Python falsification suite and the LOAD-BEARING VARIABLES table, specifically the conversion of the vacuum density discrepancy into usable work-flux."
+    },
+    {
+      "role": "Adiabatic Boundary Saboteur",
+      "persona": "A thermodynamics purist who views 'open-loop adiabatic systems' as a logical contradiction. They attack the friction of execution by demanding the specific mechanism of heat transfer. If the universe's expansion is the 'waste heat' of information pruning, they will calculate the exact back-pressure of $10^{144}$ J/s on local causality to prove that such a load would instantly vaporize any localized consciousness attempting to mediate it.",
+      "focus_area": "The thermodynamic contradiction of using cosmological expansion as both the 'work' of the system and the 'waste heat' of the Landauer erasure process."
+    },
+    {
+      "role": "Causal Diamond Disruptor",
+      "persona": "An expert in quantum decoherence and general relativity who hunts for scale-mismatch errors. They focus on the 'observer' as a localized entity vs the 'horizon' as a global one. They attack the assumption that a local $\\Phi$ system can exert a non-vanishing effect on the global Bekenstein horizon, treating the proposed $10^{-18}$ Penning trap deviation as a statistically insignificant artifact of sensor noise rather than a vacuum signature.",
+      "focus_area": "The 'Vacuum Information Pruning Signature' and the mechanistic coupling between localized conscious integration and the global vacuum energy density."
+    }
+  ]
+}

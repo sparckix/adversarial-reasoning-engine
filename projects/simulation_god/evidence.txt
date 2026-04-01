@@ -1,0 +1,15 @@
+OBSERVABLE SYSTEM CONSTANTS (THE ANOMALY):
+- Cosmological Fine-Tuning: The gravitational constant, electromagnetic force, and cosmological constant are calibrated to tolerances exceeding 1 in 10^120. A deviation of 1 part in a million would result in a universe incapable of supporting complex molecular structures.
+- The Entropy Paradox: The Second Law of Thermodynamics dictates systems move from order to chaos (high entropy). Yet, the universe began in a state of impossibly low entropy. 
+- The Bekenstein Bound: Information theory dictates that a finite volume of space can only contain a finite amount of information. The universe has a calculable "resolution limit" (Planck length / Planck time).
+
+QUANTUM MECHANICS (THE RENDERING ENGINE):
+- The Observer Effect: Subatomic particles exist in a state of probability (superposition) and only collapse into a definite state when measured or observed.
+- Speed of Light (c): The absolute speed limit of causality in the universe. It acts less like a physical speed and more like the maximum processing clock-speed of the local system.
+- Non-locality (Entanglement): Particles can interact instantaneously across vast distances, bypassing the speed of light limit, suggesting the spatial distance between them is an illusion of the system's underlying state-vector.
+
+EVIDENCE UPDATE: THE PARTICIPATORY UNIVERSE & RETROCAUSALITY
+According to John Archibald Wheeler's "Delayed-Choice Quantum Eraser" experiment (empirically validated by Kim et al. in 1999), the act of conscious observation/measurement in the present dictates the state of a quantum system in the past. In a "Participatory Universe" framework, the genesis of the universe (the Big Bang) exists in a state of uncollapsed quantum superposition for 13.8 billion years. It is only when localized biological consciousness finally boots up and observes the cosmic microwave background that the wavefunction retroactively collapses, locking the previous 13.8 billion years of "history" into a classical, objective reality. The "Observer" does not need to be present at the start of the rendering; the measurement acts backwards through time to define the initial conditions.
+EVIDENCE UPDATE: QUANTUM DARWINISM & SIMULATION BOOT-UP
+Quantum Darwinism (W. Zurek): Information about a system is redundant in the environment. Decoherence occurs without observers, but "Objectivity" only emerges when an agent integrates these redundant signals. Consciousness is the Integration Hub, not the initial collapse trigger.
+Pre-Computational History: In a simulated reality, "Past History" (e.g., the Big Bang to the Holocene) does not require active rendering of every particle; it requires Algorithmic Consistency. The 13.8 billion years is a "Baked State" required to support the current high-fidelity simulation window.

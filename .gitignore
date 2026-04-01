@@ -1,0 +1,22 @@
+# 1. CRITICAL: Hide API Keys and Environment Variables
+.env
+*.env
+
+# 2. Hide Python Virtual Environments and Caches
+venv/
+env/
+__pycache__/
+*.py[cod]
+
+# 3. Hide OS System Files (Mac)
+.DS_Store
+
+# 4. Hide Debugging Logs
+last_prompt_debug.txt
+
+# 5. Hide ALL Projects...
+projects/*
+
+# 6. ...EXCEPT the ones you want to showcase
+!projects/ai_inference_collapse/
+!projects/simulation_god/

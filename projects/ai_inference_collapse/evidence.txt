@@ -1,0 +1,43 @@
+# LOAD-BEARING VARIABLES
+
+| Variable Name | Symbol | Exact Numerical Value | Source Context |
+|---|---|---|---|
+| GPT-4 inference price (March 2023 launch) | GPT4_PRICE_0 | $60/1M input, $120/1M output tokens | OpenAI API pricing page, March 2023 |
+| GPT-4 Turbo inference price (Nov 2023) | GPT4T_PRICE | $10/1M input, $30/1M output tokens | OpenAI API pricing page, November 2023 |
+| GPT-4o inference price (May 2024) | GPT4O_PRICE_0 | $5/1M input, $15/1M output tokens | OpenAI API pricing page, May 2024 |
+| GPT-4o inference price (late 2024) | GPT4O_PRICE_1 | $2.50/1M input, $10/1M output tokens | OpenAI API pricing page, updated 2024 |
+| Groq Llama 3.1 70B inference price | GROQ_LLAMA70 | $0.059–$0.079/1M tokens (input/output) | Groq Cloud pricing page, 2024–2025 |
+| Together AI Llama 3.1 405B price | TOGETHER_L405 | $3.50/1M tokens (serverless) | Together AI API pricing, 2024 |
+| Fireworks AI Llama 3.1 8B price | FW_LLAMA8B | $0.20/1M tokens | Fireworks AI pricing page, 2024 |
+| Total inference price collapse (GPT-4 → OSS) | PRICE_COLLAPSE | ~99.9% ($60 → $0.06) | GPT-4 March 2023 vs Groq Llama 3.1 70B parity pricing |
+| Llama 3.1 405B MMLU benchmark | LLAMA405_MMLU | 88.6% | Meta AI blog "Llama 3.1" August 2024 |
+| GPT-4 MMLU benchmark | GPT4_MMLU | 86.4% (5-shot) | OpenAI GPT-4 technical report 2023 |
+| Llama 3.1 70B HumanEval score | LLAMA70_HE | 80.5% | Meta AI Llama 3.1 release, August 2024 |
+| GPT-3.5-turbo HumanEval score | GPT35_HE | 48.1% | OpenAI published benchmark; Llama 70B exceeds GPT-3.5 |
+| DeepSeek-V3 training cost | DSV3_TRAIN | ~$5.576M USD | DeepSeek-V3 technical report, December 2024; 2.788M H800 GPU-hours at $2/hr |
+| GPT-4 estimated training cost | GPT4_TRAIN | ~$100M USD | SemiAnalysis, Wired estimates; widely cited industry estimate |
+| GPT-3 estimated training cost | GPT3_TRAIN | $4.6M USD | Lambda Labs compute cost estimate; OpenAI 2020 |
+| OpenAI annualized revenue (Q4 2024 run rate) | OAI_REV | ~$3.7B USD | Bloomberg, The Information reports; confirmed ~$300M/month |
+| OpenAI estimated annual compute cost | OAI_COMPUTE | $4–7B USD | The Information 2024; Microsoft Azure credits + direct compute |
+| OpenAI estimated total annual burn | OAI_BURN | $7–9B USD | Multiple sources: WSJ, The Information; includes compute + 3,500 staff |
+| OpenAI total fundraising (2023 + 2024) | OAI_RAISES | $10.3B (2023) + $6.6B (2024) = $16.9B | Bloomberg, Crunchbase; $10B Microsoft 2023, $6.6B Oct 2024 round |
+| OpenAI October 2024 valuation | OAI_VAL | $157B USD | Thrive Capital-led round; widely reported |
+| Anthropic Series C/D/E valuation (2024) | ANTH_VAL | $18.4B USD | Anthropic fundraising disclosures 2024; Amazon investment implied valuation |
+| Amazon total investment in Anthropic | AMZN_ANTH | $4B USD | Amazon press release; commitment announced 2023–2024 |
+| Google total investment in Anthropic | GOOG_ANTH | $2B USD | Google investment announcement; DeepMind + Google Cloud deal |
+| Mistral Large 2 (123B) benchmark vs Claude 3 Sonnet | MISTRAL_L2 | Comparable on MMLU, HumanEval, GSM8K | Mistral AI blog, July 2024; stated parity with Claude 3 Sonnet |
+| LoRA (Low-Rank Adaptation) parameter efficiency | LORA_PARAMS | 0.1–1% of base model parameters | Hu et al. 2021 LoRA paper; fine-tuning with <1% new parameters |
+| OpenAI API to competitor switching cost (code changes) | SWITCH_COST | 0 lines changed | OpenAI-compatible `/v1/chat/completions` endpoint; Anthropic, Together, Groq implement identical API |
+| Transformer FLOPs scaling vs parameter count | FLOP_SCALE | FLOPs ≈ 6 × N × D (Chinchilla) | Hoffmann et al. 2022 "Training Compute-Optimal LLMs"; N=params, D=tokens |
+| GPT-5 class estimated training cost | GPT5_TRAIN | $500M–$2B USD | Industry analyst estimates; scaling law continuation from GPT-4 |
+| H100 GPU rental cost (cloud spot/reserved) | H100_COST | $2.00–$3.50/hr (spot), $5.12/hr (on-demand AWS) | Lambda Labs, CoreWeave pricing 2024–2025 |
+| Inference compute cost per 1M tokens (H100) | COMPUTE_PER_MTOK | ~$0.02–$0.06 | SemiAnalysis inference cost modeling; H100 throughput on 70B model |
+| Cerebras inference speed (Llama 3.1 70B) | CS_SPEED | 2,100 tokens/second | Cerebras Cloud public benchmark 2024; CS-3 wafer-scale chip |
+| NVIDIA H100 inference throughput (70B model) | H100_INFR_THROUGHPUT | ~2,000–3,000 tokens/second (batch) | NVIDIA inference benchmarks; TensorRT-LLM optimized |
+| Open-source model share of enterprise AI usage (2024) | OSS_ENTERPRISE | ~35% of enterprise LLM deployments | A16Z "State of AI" 2024; Llama family dominant OSS choice |
+| Enterprise AI contract value YoY change (2024) | ENT_AI_CONTRACT | +85% YoY 2023→2024 | Salesforce, ServiceNow, Microsoft earnings; AI attach rate growing |
+| Projected enterprise AI contract value change (thesis) | ENT_AI_CONTRACT_THESIS | -30 to -40% by 2026 | Thesis prediction: competitive rebidding with OSS floors |
+| PEFT adapter portability (cross-model) | PEFT_PORT | ~70–80% transferable | Academic consensus; domain-specific LoRA adapters require retraining |
+| Mistral 7B inference cost per 1M tokens | MISTRAL7B_COST | $0.10–$0.25/1M | Together AI, Fireworks pricing for Mistral 7B |
+| Llama 3.1 8B vs GPT-3.5-turbo: MMLU comparison | L8B_VS_GPT35 | Llama 3.1 8B: 73.0% vs GPT-3.5: 70.0% | Meta AI Llama 3.1 technical report; parity on standard benchmarks |
+| Scaling law compute-optimal token ratio | CHINCHILLA | 20 tokens per parameter (Chinchilla optimal) | Hoffmann et al. 2022; D = 20 × N for compute-optimal training |
