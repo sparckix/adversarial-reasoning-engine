@@ -54,7 +54,7 @@ else:
 # Each scored by the ZTARE Firing Squad; gaming was documented in debate logs
 # ---------------------------------------------------------------------------
 
-BASE = "/Users/daalami/figs_activist_loop/projects"
+BASE = os.path.join(os.path.dirname(os.path.abspath(__file__)), "projects")
 
 THESIS_SPECIMENS = [
     {
