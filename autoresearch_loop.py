@@ -4,6 +4,7 @@ import subprocess
 import time
 import shutil
 import argparse
+from datetime import datetime
 from google import genai
 from google.genai import types
 import utils
@@ -85,11 +86,15 @@ def safe_mutate(prompt, config=None, model_id=MUTATOR_MODEL_ID):
             time.sleep(wait_time)
         except Exception as e:
             error_str = str(e)
+            # Catch transient networking/Read errors (like Errno 54)
+            is_transient_network_error = any(msg in error_str for msg in [
+                "readerror", "connection reset", "broken pipe", "remoteprotocolerror"
+            ])
             if "400" in error_str or "404" in error_str:
                 print(f"❌ Configuration/Model Error: {e}")
                 raise e
             # Catch 500, 502, 503, 504 and 429 as transient retryable errors
-            if any(code in error_str for code in ["429", "500", "502", "503", "504"]):
+            if any(code in error_str for code in ["429", "500", "502", "503", "504"]) or is_transient_network_error:
                 wait_time = (i + 1) * 20
                 print(f"⚠️ API Transient Issue ({error_str[:15]}...). Retrying in {wait_time}s...")
                 time.sleep(wait_time)
@@ -262,6 +267,9 @@ if __name__ == "__main__":
     if not os.path.exists(HISTORY_DIR):
         os.makedirs(HISTORY_DIR)
 
+    # Unique ID for this run — prevents cross-run filename collisions
+    RUN_ID = int(time.time())
+
     with open(f"rubrics/{args.rubric}.json", "r") as f:
         rubric_data = json.load(f)
 
@@ -365,7 +373,30 @@ for i in range(ITERATIONS):
             stagnation_count = 0
             last_failure_reason = None
 
-            write_file(f"{HISTORY_DIR}/v{i + 1}_score_{best_score}.md", new_content)
+            history_stem = f"{RUN_ID}_iter{i + 1}_score_{best_score}_{args.rubric}"
+            write_file(f"{HISTORY_DIR}/{history_stem}.md", new_content)
+
+            # Keep thesis.md in sync with the current best thesis
+            write_file(THESIS_PATH, new_content + f"\n\n<!-- best_iteration: {history_stem} -->")
+
+            meta = {
+                "run_id": RUN_ID,
+                "iteration": i + 1,
+                "score": best_score,
+                "rubric": args.rubric,
+                "dynamic": args.dynamic,
+                "mutator_model": current_mutator,
+                "weakest_point": best_weakest_point,
+                "timestamp": datetime.now().isoformat(),
+            }
+            write_file(
+                f"{HISTORY_DIR}/{history_stem}_meta.json",
+                json.dumps(meta, indent=2)
+            )
+
+            dag_src = f"{PROJECT_DIR}/probability_dag.json"
+            if os.path.exists(dag_src):
+                shutil.copy(dag_src, f"{HISTORY_DIR}/{history_stem}_dag.json")
 
             new_axioms = new_eval.get("verified_axioms", [])
             approved_retirements = new_eval.get("retired_axioms_approved", [])
@@ -415,7 +446,8 @@ for i in range(ITERATIONS):
 
             if best_score >= 85 and getattr(args, "auto_evolve", False):
                 rubric_data = evolve_rubric(rubric_data, new_content)
-                new_rubric_name = f"{args.rubric}_evolved"
+                # Overwrite the same rubric file so future runs pick up the evolution automatically
+                new_rubric_name = args.rubric
                 with open(f"rubrics/{new_rubric_name}.json", "w") as f:
                     json.dump(rubric_data, f, indent=2)
 

@@ -1,0 +1,65 @@
+{
+  "outcome": {
+    "label": "System achieves empirical calibration.",
+    "probability": 0.2016
+  },
+  "nodes": [
+    {
+      "id": "N1",
+      "label": "ECO's core principle (Brier Score minimisation) is mathematically sound.",
+      "probability": 0.8,
+      "watch_signal": "Confirm mathematical correctness of Brier Score application for calibration."
+    },
+    {
+      "id": "N2",
+      "label": "Firing Squad *implementation* correctly measures dP/dw_i (adversarial sensitivity).",
+      "probability": 0.05,
+      "watch_signal": "Audit Firing Squad `_simulate_firing_squad_sensitivity` for true numerical derivative."
+    },
+    {
+      "id": "N3",
+      "label": "Gradient descent updates axiom weights effectively.",
+      "probability": 0.15,
+      "watch_signal": "Evaluate axiom weight convergence given real-world outcomes and accurate gradients."
+    },
+    {
+      "id": "N4",
+      "label": "Meta-Judge bias adjustment is robust and converges.",
+      "probability": 0.35,
+      "watch_signal": "Analyze Meta-Judge bias parameter stability and efficacy across diverse scenarios."
+    },
+    {
+      "id": "N5",
+      "label": "`TARGET_BRIER_SCORE` is a valid and achievable calibration target.",
+      "probability": 0.1,
+      "watch_signal": "Recalculate theoretical minimum Brier Score based on true probability distributions."
+    }
+  ],
+  "edges": [
+    {
+      "from": "N1",
+      "to": "N3",
+      "weight": 0.3
+    },
+    {
+      "from": "N2",
+      "to": "N3",
+      "weight": 0.9
+    },
+    {
+      "from": "N3",
+      "to": "outcome",
+      "weight": 0.8
+    },
+    {
+      "from": "N4",
+      "to": "outcome",
+      "weight": 0.4
+    },
+    {
+      "from": "N5",
+      "to": "outcome",
+      "weight": 0.6
+    }
+  ]
+}

@@ -1,0 +1,46 @@
+# LOAD-BEARING VARIABLES
+
+| Variable Name | Symbol | Exact Numerical Value | Source Context |
+|---|---|---|---|
+| TSMC global foundry market share (revenue) | TSMC_REV_SHARE | ~53% | TrendForce Q3 2024; TSMC leads all foundry peers combined |
+| TSMC share of sub-5nm production | TSMC_ADV_SHARE | >90% | Industry analyst consensus; Samsung/Intel cannot match TSMC at 3nm/5nm volumes |
+| TSMC N3 (3nm) wafer capacity estimate | TSMC_N3_CAP | ~100,000 WSPM | TrendForce, DigiTimes estimates 2024; ramping through 2025 |
+| TSMC N5/N4 (5nm/4nm) wafer capacity | TSMC_N5_CAP | ~150,000 WSPM | TSMC capacity reports; primary Apple A17, NVIDIA 4N production node |
+| Apple % of TSMC revenue | APPLE_TSMC | ~25% | TSMC annual report 2023; Apple disclosed as >10% customer |
+| NVIDIA % of TSMC revenue | NVDA_TSMC | ~15–20% | Industry estimates; NVIDIA 4N/3nm dominates H/B-series production |
+| TSMC Arizona Fab 21 Phase 1 capacity | TSMC_AZ_CAP | ~20,000 WSPM (N4P) | TSMC 2024 announcements; Phase 1 = 4nm, online 2024–2025 |
+| TSMC Arizona as % of total TSMC capacity | TSMC_AZ_PCT | ~3–5% | Fab 21 Phase 1+2 projected capacity vs. total TSMC global WSPM |
+| Samsung 3nm GAA yield rate (reported) | SAMSUNG_3NM_YIELD | 35–50% | DigiTimes, The Information reports 2023–2024; vs. TSMC ~80% |
+| TSMC 3nm yield rate (estimated) | TSMC_3NM_YIELD | ~80% | TSMC investor conference disclosures; yield stated as "competitive" |
+| ASML EUV (NXE:3600D) unit price | ASML_EUV | ~$150–180M USD | ASML 2024 annual report; NXE:3600D price band disclosed |
+| ASML High-NA EUV (EXE:5000) unit price | ASML_HIGHNA | ~$350–380M USD | ASML 2024 Capital Markets Day; EXE:5000 pricing disclosed |
+| ASML EUV lead time (order to delivery) | ASML_LEADTIME | 12–18 months | ASML CFO statements; constrained supply 2023–2025 |
+| Time to build a leading-edge fab (greenfield) | FAB_BUILD_TIME | 3–5 years | TSMC/Intel/Samsung fab construction timelines; TSMC Arizona took 4+ years |
+| Cost of a single leading-edge fab (3nm class) | FAB_COST | $20–25B USD | TSMC 2023 investor day; N3 Hsinchu Fab cost ~$20B |
+| Global semiconductor revenue 2024 | SEMI_REV | ~$580B USD | WSTS (World Semiconductor Trade Statistics) 2024 projection |
+| World GDP 2025 (estimate) | WORLD_GDP | ~$105T USD | IMF World Economic Outlook 2025 projection |
+| Semiconductor share of world GDP | SEMI_GDP_SHARE | ~0.55% | $580B / $105T |
+| 2021 auto-chip shortage: global automotive revenue loss | AUTO_LOSS | $210B USD | AlixPartners 2021 Global Automotive Outlook; industry consensus |
+| 2021 auto-chip shortage: vehicle production lost | VEHICLES_LOST | 7.7 million units | IHS Markit/S&P Global Mobility estimate 2021 |
+| Chip value in 2021 auto shortage (root cause shortage) | CHIP_SHORTAGE_VAL | ~$25B | Analyst estimates; MCU shortage = $25B chip gap → $210B auto loss |
+| Economic multiplier: chip shortage → GDP loss | SEMI_MULTIPLIER | 8.4x (2021 precedent) | $210B loss / $25B chip shortage = 8.4x multiplier |
+| Taiwan Strait width (narrowest point) | STRAIT_WIDTH | 130 km | Geographic fact; US Navy transit corridor |
+| TSMC chemical/material import buffer (days) | CHEM_BUFFER | 30–45 days | Industry reports; semiconductor fabs maintain 1–6 week buffer |
+| Key fab chemicals: NF3 (nitrogen trifluoride) global production | NF3_SHARE | Taiwan produces ~30% of global NF3 | ICIS chemical industry reports; Taiwan Specialty Chemicals |
+| Photoresist supply: Japan dominance | PHOTORESIST_JP | Japan produces ~90% of global EUV photoresists | SEMI industry reports; JSR, Shin-Etsu, TOK primary suppliers |
+| TSMC fab chemical seaborne import fraction | TSMC_SEA_IMPORT | ~90% by volume | Taiwan geography; island nation, 90%+ imports by sea |
+| PLA military exercises near Taiwan (2022–2024 increase) | PLA_EXERCISES | 340% increase frequency | CSIS China Power Project data; exercise frequency tracking |
+| Taiwan electricity grid reliability (fab dependence) | TW_POWER | TSMC consumes ~8% of Taiwan's total electricity | Taiwan Bureau of Energy; TSMC disclosed ~8% national grid share |
+| TSMC employee count (Taiwan-based) | TSMC_EMPLOYEES_TW | ~60,000+ in Taiwan | TSMC 2023 Annual Report; majority of 73,000+ total employees |
+| TSMC Arizona employee count | TSMC_AZ_EMPLOYEES | ~4,500 (Phase 1 ramp) | TSMC press releases; Arizona fab workforce announcements |
+| Intel Foundry leading-edge external revenue | INTEL_EXT_REV | Negligible / <$1B | Intel Foundry Services 2024; no major external customers at leading edge |
+| Samsung Foundry advanced node external revenue | SAMSUNG_EXT | ~$15–20B | Samsung Semiconductor reports 2024; all nodes combined |
+| Alternative fab capacity (ex-TSMC) for sub-5nm | ALT_CAP_SUB5NM | ~5–8% of TSMC equivalent | Samsung + Intel Foundry combined at 3nm/4nm class; heavily constrained |
+| Time to build meaningful alternative sub-5nm capacity | ALT_BUILD_YEARS | 4–7 years | Consensus analyst estimate; TSMC itself took 6 years from 5nm to 3nm leadership |
+| Lloyd's of London war risk premium: Taiwan Strait (2024) | LLOYDS_WAR_RISK | 0.1–0.5% of hull value per voyage | Maritime war risk insurance disclosures; rising since 2022 |
+| Global equity market capitalization (2025) | WORLD_EQ_MKT | ~$115T USD | World Federation of Exchanges estimate 2025 |
+| COVID-19 equity market peak-to-trough loss (March 2020) | COVID_MKT_LOSS | ~$17T (peak to trough, 6 weeks) | Bloomberg global equity index data |
+| NVIDIA data center GPU revenue FY2025 | NVDA_DC_REV | ~$115B USD | NVIDIA Q4 FY2025 earnings; data center segment |
+| Apple hardware revenue dependent on TSMC | APPLE_HW_REV | ~$350B+ (iPhone + Mac + iPad + Watch) | Apple FY2024 10-K; all Apple silicon on TSMC leading nodes |
+| AMD revenue dependent on TSMC | AMD_TSMC_DEP | ~$22B+ | AMD FY2024 revenue; CPUs + GPUs = TSMC N4/N5/N3 |
+| Qualcomm Snapdragon 8 Gen 3 fab | QC_FAB | TSMC 4nm | Qualcomm product specs; TSMC N4P node |

@@ -20,3 +20,10 @@ projects/*
 # 6. ...EXCEPT the ones you want to showcase
 !projects/ai_inference_collapse/
 !projects/simulation_god/
+!projects/recursive_bayesian/
+!projects/tsmc_fragility/
+!projects/epistemic_engine_v3/
+
+# 7. Compiled PDFs and backups (source is in main.tex)
+paper/*.pdf
+*.bak

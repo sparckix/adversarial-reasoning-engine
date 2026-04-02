@@ -1,0 +1,43 @@
+{
+  "outcome": {
+    "label": "V3 Achieves Empirically Calibrated Probabilities and Precise Credit Assignment",
+    "probability": 0.49
+  },
+  "nodes": [
+    {
+      "id": "node_A",
+      "label": "Robust Architectural Integrity (Meta-Judge Validation)",
+      "probability": 0.8,
+      "watch_signal": "Mutator-generated ThesisPredictor consistently adheres to required signature and output range [0,1]."
+    },
+    {
+      "id": "node_B",
+      "label": "Principled Gradient-Based Learning (EpistemicGradientUpdater + RSA)",
+      "probability": 0.7,
+      "watch_signal": "Parameters (axiom weights, meta_judge_params) converge stably and in the expected direction during training."
+    },
+    {
+      "id": "node_C",
+      "label": "Adequate Model Representation for Causal Complexity (ThesisPredictor)",
+      "probability": 0.2,
+      "watch_signal": "ThesisPredictor demonstrates robust Brier Skill Score performance against diverse, complex, and noisy real-world simulations."
+    }
+  ],
+  "edges": [
+    {
+      "from": "node_A",
+      "to": "outcome",
+      "weight": 0.4
+    },
+    {
+      "from": "node_B",
+      "to": "outcome",
+      "weight": 0.8
+    },
+    {
+      "from": "node_C",
+      "to": "outcome",
+      "weight": 1.0
+    }
+  ]
+}

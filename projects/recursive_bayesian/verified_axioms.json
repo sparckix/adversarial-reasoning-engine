@@ -1,0 +1,5 @@
+[
+  "The uniform blame assignment mechanism within axiom bundles effectively prevents the Mutator from directly influencing or manipulating axiom sensitivity scores, thereby solving the 'Sensitivity Gaming Risk' constraint.",
+  "The use of 'RELATIVE_DELTA_ERROR' with 'max(Z_ACTUAL_j, EPSILON)' robustly handles critically small 'Z_ACTUAL' values, preventing numerical instability and ensuring meaningful error signals.",
+  "All structural axioms are designed to be encoded as numerical 'Axiom_Weight_k' values within a defined range [0.0, 1.0], allowing for quantitative ablation (retirement) by setting their weight to 0.0."
+]

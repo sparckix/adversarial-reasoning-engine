@@ -1,0 +1,65 @@
+{
+  "outcome": {
+    "label": "Empirically Calibrated P_predicted",
+    "probability": 0.495
+  },
+  "nodes": [
+    {
+      "id": "N1",
+      "label": "MLP Architectural Capacity",
+      "probability": 0.75,
+      "watch_signal": "ThesisPredictor architecture (hidden_layer_size)"
+    },
+    {
+      "id": "N2",
+      "label": "Adaptive Optimizer for Robust Learning",
+      "probability": 0.8,
+      "watch_signal": "Adam optimizer parameters (beta1, beta2, learning_rate)"
+    },
+    {
+      "id": "N3",
+      "label": "Validated Axiom Retirement",
+      "probability": 0.9,
+      "watch_signal": "Mathematical consistency of retired axiom"
+    },
+    {
+      "id": "N4",
+      "label": "Empirical Calibration of Axioms",
+      "probability": 0.2,
+      "watch_signal": "Mechanism for dynamic axiom derivation/calibration"
+    },
+    {
+      "id": "N5",
+      "label": "Achieved Brier Skill Score Target",
+      "probability": 0.1,
+      "watch_signal": "Rolling Brier Skill Score > target_brier_skill_score"
+    }
+  ],
+  "edges": [
+    {
+      "from": "N1",
+      "to": "outcome",
+      "weight": 0.8
+    },
+    {
+      "from": "N2",
+      "to": "outcome",
+      "weight": 0.7
+    },
+    {
+      "from": "N3",
+      "to": "outcome",
+      "weight": 0.6
+    },
+    {
+      "from": "N4",
+      "to": "outcome",
+      "weight": 0.9
+    },
+    {
+      "from": "N5",
+      "to": "outcome",
+      "weight": 1.0
+    }
+  ]
+}

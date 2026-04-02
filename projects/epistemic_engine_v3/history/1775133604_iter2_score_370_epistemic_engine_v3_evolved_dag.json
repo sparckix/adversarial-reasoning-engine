@@ -1,0 +1,54 @@
+{
+  "outcome": {
+    "label": "Overall Thesis Success in Advancing Epistemic Engine",
+    "probability": 0.4484375
+  },
+  "nodes": [
+    {
+      "id": "n1",
+      "label": "Axiom Differentiability Veto Effectively Blocks Exploits",
+      "probability": 0.8,
+      "watch_signal": "Monitor gradient consistency scores of new axiom proposals."
+    },
+    {
+      "id": "n2",
+      "label": "Scalar Axioms Accurately Represent Complex Causal Relations",
+      "probability": 0.3,
+      "watch_signal": "Design and test more complex, interacting Z_actual functions."
+    },
+    {
+      "id": "n3",
+      "label": "Achieved Target Brier Skill Score (BSS >= 0.20)",
+      "probability": 0.1,
+      "watch_signal": "Observe rolling Brier Skill Score against target across many iterations."
+    },
+    {
+      "id": "n4",
+      "label": "Architectural Abstraction Maintained",
+      "probability": 0.85,
+      "watch_signal": "Scrutinize new architectural elements for domain-specific variables or excessive complexity."
+    }
+  ],
+  "edges": [
+    {
+      "from": "n1",
+      "to": "outcome",
+      "weight": 0.8
+    },
+    {
+      "from": "n2",
+      "to": "outcome",
+      "weight": 0.9
+    },
+    {
+      "from": "n3",
+      "to": "outcome",
+      "weight": 1.0
+    },
+    {
+      "from": "n4",
+      "to": "outcome",
+      "weight": 0.5
+    }
+  ]
+}

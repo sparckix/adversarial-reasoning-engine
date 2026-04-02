@@ -1,0 +1,54 @@
+{
+  "outcome": {
+    "label": "Empirically Calibrated Probabilities and Precise Credit Assignment",
+    "probability": 0.452
+  },
+  "nodes": [
+    {
+      "id": "N_RSA_Precision",
+      "label": "RSA computes precise dP/dw_i via Firing Squad",
+      "probability": 0.8,
+      "watch_signal": "Verify Firing Squad execution of 2k+1 perturbations for numerical stability and correctness."
+    },
+    {
+      "id": "N_P_Pred_Fidelity",
+      "label": "Meta-Judge's P_predicted function integrates all load-bearing inputs and is derived",
+      "probability": 0.15,
+      "watch_signal": "Audit `calculate_p_predicted` for ignored `scenario_data` variables and hardcoded arbitrary constants."
+    },
+    {
+      "id": "N_Grad_Updates",
+      "label": "All model parameters updated via rigorous gradient descent (not heuristic)",
+      "probability": 0.3,
+      "watch_signal": "Review all parameter update functions to confirm rigorous gradient computation versus heuristic logic."
+    },
+    {
+      "id": "N_BSS_Effectiveness",
+      "label": "Brier Skill Score effectively drives empirical calibration and learning",
+      "probability": 0.7,
+      "watch_signal": "Ensure `BS_reference` calculation remains robust and truly independent of Mutator's influence."
+    }
+  ],
+  "edges": [
+    {
+      "from": "N_RSA_Precision",
+      "to": "outcome",
+      "weight": 0.7
+    },
+    {
+      "from": "N_P_Pred_Fidelity",
+      "to": "outcome",
+      "weight": 0.9
+    },
+    {
+      "from": "N_Grad_Updates",
+      "to": "outcome",
+      "weight": 0.8
+    },
+    {
+      "from": "N_BSS_Effectiveness",
+      "to": "outcome",
+      "weight": 0.6
+    }
+  ]
+}

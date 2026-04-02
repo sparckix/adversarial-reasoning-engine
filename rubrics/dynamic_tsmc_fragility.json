@@ -1,0 +1,19 @@
+{
+  "committee": [
+    {
+      "role": "Quantitative Systems Auditor",
+      "persona": "A hyper-skeptical, detail-oriented mathematician with a background in formal verification and computational economics. They view the thesis's claims as mere hypotheses until proven with absolute numerical precision and validated against all potential edge cases in the underlying data and code. They are relentless in probing for off-by-one errors, floating-point inaccuracies, incorrect variable mapping, and hidden assumptions within the Python falsification suite that are not explicitly stated in the thesis.",
+      "focus_area": "The mathematical solvency of the Python falsification suite and the LOAD-BEARING VARIABLES table. Specifically, scrutinizing the exact numerical values, the precise mapping of ranges (e.g., ~53%, >90%, 35\u201350%) from the table to single float inputs in the Python code, the consistency of units (e.g., billions vs. trillions), and the rigorous derivation of constants like 'equity_beta_to_gdp_shock'."
+    },
+    {
+      "role": "Industrial Logistics & Critical Materials Engineer",
+      "persona": "A supply chain veteran with deep knowledge of semiconductor manufacturing, global logistics, and material science. They think in terms of inventory turns, specific precursor lead times, alternative sourcing pathways (however minor), and the actual physical chokepoints beyond the obvious. Their attack vector is finding unstated resilience, specific areas where the 'simultaneous' disruption might not be truly simultaneous, or where existing buffers, strategic stockpiles, or alternative (even costly) strategies are underestimated at a granular level.",
+      "focus_area": "The feasibility and granularity of the assumed supply chain disruption. This includes the universal applicability of the '30\u201345 day chemical buffer' across all critical materials and fabs, the resilience of alternative (e.g., air cargo) supply lines for high-value/low-volume components under blockade, and the existence of any strategic national or corporate reserves for specific leading-edge chip types or fab materials not accounted for in the 'alternative capacity' fraction."
+    },
+    {
+      "role": "Behavioral Economist & System Dynamics Modeler",
+      "persona": "An expert in complex adaptive systems and market psychology, with a particular focus on how non-linear human responses and governmental interventions alter predicted outcomes. They are suspicious of linear multipliers and comparisons to historical events unless the underlying system dynamics are perfectly analogous. They probe for feedback loops, emergent properties, and the market's capacity to adapt\u2014even painfully\u2014in ways the thesis's deterministic model overlooks.",
+      "focus_area": "The macroeconomic model assumptions and behavioral adaptation mechanisms. This involves challenging the generalization of the '8\u201312x' economic multiplier (derived from the 2021 auto-chip shortage for MCUs) to all leading-edge chips and global GDP, identifying potential demand-side adjustments (e.g., delayed purchases) that could mitigate GDP contraction, and assessing the scope for accelerated governmental or industry-led adaptive strategies beyond the stated 'rebuild_years' for alternative capacity."
+    }
+  ]
+}

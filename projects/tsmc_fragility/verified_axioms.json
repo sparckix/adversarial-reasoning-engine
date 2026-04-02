@@ -1,0 +1,13 @@
+[
+  "TSMC_ADV_SHARE (~90% of sub-5nm production)",
+  "ASML_LEADTIME_YEARS (1.5 years average)",
+  "FAB_BUILD_TIME_AVG (4.0 years average)",
+  "WORLD_GDP (~$105T USD)",
+  "WORLD_EQ_MKT (~$115T USD)",
+  "DIGITAL_ECON_PCT_GDP (~20% of World GDP)",
+  "CHEM_BUFFER (30-45 days for fab materials)",
+  "PHOTORESIST_JP (Japan produces ~90% of global EUV photoresists)",
+  "NF3_SHARE (Taiwan produces ~30% of global NF3)",
+  "TSMC_SEA_IMPORT (~90% by volume of fab chemicals)",
+  "SAMSUNG_3NM_YIELD (35-50% reported) vs. TSMC_3NM_YIELD (~80% estimated)"
+]

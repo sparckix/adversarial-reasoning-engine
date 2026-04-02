@@ -1,0 +1,54 @@
+{
+  "outcome": {
+    "label": "Catastrophic Systemic Risk (Z_EPI > 2.0)",
+    "probability": 0.7438
+  },
+  "nodes": [
+    {
+      "id": "TSMC_Advanced_Dominance",
+      "label": "TSMC retains >90% of sub-5nm production with <=5% alternative capacity.",
+      "probability": 0.8,
+      "watch_signal": "Samsung/Intel 3nm/4nm yield rates and external wafer capacity; TSMC's non-Taiwan capacity ramp."
+    },
+    {
+      "id": "Supply_Chain_Fragility",
+      "label": "Fab chemical buffers are 30-45 days, 90% fab chemicals via sea, Japan dominates photoresist.",
+      "probability": 0.85,
+      "watch_signal": "Diversification of critical fab material sources and logistics pathways for Taiwan fabs."
+    },
+    {
+      "id": "Digital_Economy_Dependency_Tiers",
+      "label": "Thesis's tiered digital economy dependency and paralysis rates accurately reflect real-world vulnerability.",
+      "probability": 0.65,
+      "watch_signal": "Empirical data on sector-specific advanced chip dependency; observed adaptive capacities in simulated disruptions."
+    },
+    {
+      "id": "No_Rapid_Alternative_Capacity",
+      "label": "Fab build times remain ~4 years and ASML lead times ~1.5 years even under crisis conditions.",
+      "probability": 0.75,
+      "watch_signal": "Acceleration of new fab construction projects; ASML's ability to prioritize or ramp production under geopolitical pressure."
+    }
+  ],
+  "edges": [
+    {
+      "from": "TSMC_Advanced_Dominance",
+      "to": "outcome",
+      "weight": 0.9
+    },
+    {
+      "from": "Supply_Chain_Fragility",
+      "to": "outcome",
+      "weight": 0.8
+    },
+    {
+      "from": "Digital_Economy_Dependency_Tiers",
+      "to": "outcome",
+      "weight": 0.7
+    },
+    {
+      "from": "No_Rapid_Alternative_Capacity",
+      "to": "outcome",
+      "weight": 0.75
+    }
+  ]
+}

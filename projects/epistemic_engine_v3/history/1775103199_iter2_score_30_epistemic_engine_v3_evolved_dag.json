@@ -1,0 +1,64 @@
+{
+  "outcome": {
+    "label": "Thesis Direction is Correct (Empirically calibrated and axiom-attuned P_predicted)",
+    "probability": 0.19583333333333333
+  },
+  "nodes": [
+    {
+      "id": "A",
+      "label": "Axioms as Learnable Parameters Implemented",
+      "probability": 0.8,
+      "watch_signal": "Existence and structural integration of AxiomCoefficientLayer in ThesisPredictor"
+    },
+    {
+      "id": "B",
+      "label": "Accurate Gradient-based Credit Assignment",
+      "probability": 0.2,
+      "watch_signal": "Convergence and stability of learned axiom coefficients to true underlying relevance"
+    },
+    {
+      "id": "C",
+      "label": "Robust Brier Skill Score Evaluation",
+      "probability": 0.1,
+      "watch_signal": "Numerical stability of BS_reference and BSS calculation under extreme probabilities"
+    },
+    {
+      "id": "D",
+      "label": "Effective Axiom Weight Synchronization",
+      "probability": 0.3,
+      "watch_signal": "Accuracy of global axiom weights reflecting stable, meaningful learned coefficients"
+    }
+  ],
+  "edges": [
+    {
+      "from": "A",
+      "to": "B",
+      "weight": 0.7
+    },
+    {
+      "from": "C",
+      "to": "B",
+      "weight": 0.9
+    },
+    {
+      "from": "B",
+      "to": "D",
+      "weight": 0.8
+    },
+    {
+      "from": "B",
+      "to": "outcome",
+      "weight": 0.9
+    },
+    {
+      "from": "C",
+      "to": "outcome",
+      "weight": 0.8
+    },
+    {
+      "from": "D",
+      "to": "outcome",
+      "weight": 0.7
+    }
+  ]
+}

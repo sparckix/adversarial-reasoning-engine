@@ -1,0 +1,10 @@
+{
+  "run_id": 1775103199,
+  "iteration": 2,
+  "score": 30,
+  "rubric": "epistemic_engine_v3_evolved",
+  "dynamic": true,
+  "mutator_model": "gemini-2.5-flash",
+  "weakest_point": "The numerical fragility of the Brier Skill Score calculation under extreme, low-variance probabilistic conditions, which leads to catastrophic mis-evaluation and divergence of learned axiom coefficients, thereby undermining the core mechanism for credit assignment and axiom adaptation.",
+  "timestamp": "2026-04-02T04:04:23.803717"
+}

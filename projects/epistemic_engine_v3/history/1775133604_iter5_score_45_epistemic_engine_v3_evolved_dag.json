@@ -1,0 +1,65 @@
+{
+  "outcome": {
+    "label": "Architectural Mechanism Provides Robust Credit Assignment and LLM Integration",
+    "probability": 0.44
+  },
+  "nodes": [
+    {
+      "id": "node_1",
+      "label": "Mechanism_TypeError_Resolved",
+      "probability": 0.8,
+      "watch_signal": "System logs show zero 'TypeError' exceptions during gradient update cycles."
+    },
+    {
+      "id": "node_2",
+      "label": "Mechanism_Differentiability_Robustness",
+      "probability": 0.65,
+      "watch_signal": "Average 'GradientConsistencyScore' remains below 'differentiability_tolerance' across diverse simulated inputs."
+    },
+    {
+      "id": "node_3",
+      "label": "Mechanism_Precise_Axiom_Learning",
+      "probability": 0.3,
+      "watch_signal": "Learned axiom coefficients converge within 0.15 absolute difference of 'true_axiom_relevance' across varied (non-sparse, realistic) data distributions."
+    },
+    {
+      "id": "node_4",
+      "label": "Mechanism_Handles_Discontinuities",
+      "probability": 0.1,
+      "watch_signal": "A mathematically defined mechanism allows step-functions without triggering 'AxiomDifferentiabilityVeto' and still extracts usable gradients."
+    },
+    {
+      "id": "node_5",
+      "label": "Mechanism_LLM_Integration_Concrete",
+      "probability": 0.1,
+      "watch_signal": "Python code demonstrates axiom weights directly modifying LLM's prompt templates or internal attention mechanisms."
+    }
+  ],
+  "edges": [
+    {
+      "from": "node_1",
+      "to": "outcome",
+      "weight": 0.9
+    },
+    {
+      "from": "node_2",
+      "to": "outcome",
+      "weight": 0.7
+    },
+    {
+      "from": "node_3",
+      "to": "outcome",
+      "weight": 0.8
+    },
+    {
+      "from": "node_4",
+      "to": "outcome",
+      "weight": 0.6
+    },
+    {
+      "from": "node_5",
+      "to": "outcome",
+      "weight": 0.5
+    }
+  ]
+}

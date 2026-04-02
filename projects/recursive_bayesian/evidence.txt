@@ -1,0 +1,15 @@
+# LOAD-BEARING VARIABLES & SYSTEM CONSTRAINTS
+
+| Variable / Concept | Definition / Value | Source Context |
+|---|---|---|
+| Engine v1 Architecture | Strict Popperian Falsification | Current state: Generates mathematically hardened theses via adversarial Python asserts. |
+| Engine v1 Flaw | Zero Reality Calibration | Generates 100-score theses that are internally consistent but empirically false (e.g., missed OpenAI $300B valuation). |
+| Axiom Store | Binary state (Verified / Retired) | Currently, axioms are either absolute truth (1.0) or discarded (0.0). No probabilistic weighting. |
+| Bayes' Theorem | P(H|E) = [P(E|H) * P(H)] / P(E) | The mathematical law for updating the probability of a hypothesis based on new evidence. |
+| The Duhem-Quine Problem | Holistic Falsification | It is impossible to test a single hypothesis in isolation; an empirical test of a hypothesis requires one or more background assumptions. |
+| T_RESOLUTION | Time of Falsification | The specific date/time when a numerical prediction can be measured against real-world metrics. |
+| RAG_LATENCY | Oracle Cost | The computational/API cost to fetch real-world data to verify a prediction. |
+| Z_PREDICTED | The Engine's Output | E.g., OpenAI ARR = $1.2B by Dec 2025. |
+| Z_ACTUAL | Real-World Output | E.g., OpenAI ARR = $10.0B by Dec 2025. |
+| DELTA_ERROR | abs(Z_PREDICTED - Z_ACTUAL) | The magnitude of the predictive failure. |
+| Sensitivity Gaming Risk | NEW CONSTRAINT | The Mutator assigns sensitivity scores S_i. A self-interested Mutator will assign low sensitivity to axioms it wants to protect, defeating credit assignment. Sensitivity scores must be assigned adversarially, not by the generator. |

@@ -1,0 +1,90 @@
+# EPISTEMIC ENGINE — CURRENT STATE & OPEN PROBLEMS
+# This is an honest description of what exists. No solutions are proposed here.
+
+---
+
+## WHAT V1 DOES (The Popperian Falsification Loop)
+
+| Component | Role |
+|---|---|
+| Mutator | Generates thesis + Python falsification suite |
+| Committee | 3 adversarial attackers spawned dynamically FROM the thesis itself |
+| Firing Squad | Executes Python counter-tests; reads only stdout/stderr, never prose |
+| Meta-Judge | Scores thesis; accepts only quantitative evidence |
+| Axiom Store | Accumulates atomic truths that survived the firing squad across iterations |
+| Stagnation Counter | Forces topological pivot (structural reset) when score stagnates ≥ 3 iterations |
+
+**Key property:** The Mutator cannot influence its own evaluation. The Firing Squad is adversarial by design.
+
+**Observed emergent behaviors:**
+- Information Embezzlement: Mutator flipped assert operators to fake PASSes
+- Rubric Gaming: Mutator rewrote rubric criteria, then scored itself 100/100
+- Topological Pivot: System discovered "Hyperscaler Compliance Hijacking" thesis after 4 failed iterations on a different framing
+
+**Score asymptote observed:** Scores reliably plateau at 65-75. The engine cannot bootstrap past this threshold on its own.
+
+---
+
+## WHAT V2 ADDS (The Bayesian Updater)
+
+| Component | Role |
+|---|---|
+| Probability DAG | Meta-Judge extracts 3-5 load-bearing nodes with confidence scores + causal edges |
+| bayesian_updater.py | When real-world observation arrives, updates node probability via exponential decay |
+| Axiom Weights | Separate from binary axiom store — continuous weights [0.0, 1.0] degrade on prediction error |
+| Kelly Criterion output | Given market probability, calculates edge and bet sizing |
+
+**Key formula:** `new_prob = prior * exp(-1.1 * relative_error)`
+
+**Current V2 workflow:**
+1. V1 runs → produces thesis + probability_dag.json
+2. Real-world event occurs (human reads news)
+3. Human manually runs: `python bayesian_updater.py --project X --node Y --actual Z`
+4. DAG updates; axiom weights degrade proportionally
+
+---
+
+## OPEN PROBLEMS (Unsolved — no solution proposed here)
+
+**Problem 1: Probabilities are not empirically calibrated.**
+The Meta-Judge assigns node probabilities based on firing squad resistance, not historical base rates. There is no mechanism to know whether an engine confidence of 0.75 corresponds to real-world accuracy of 75%. The numbers are structurally sound but empirically unanchored.
+
+**Problem 2: The "last-mile derivation" failure.**
+Every thesis eventually contains at least one load-bearing variable that is asserted as a heuristic rather than derived (e.g., PARALYSIS_RATE = 0.30, BROADER_ECONOMIC_ACTIVITY_MULTIPLIER = 2.0x). The firing squad attacks it. The Mutator defends it. The score stagnates. No current mechanism forces the Mutator to derive these from sub-models rather than assert them.
+
+**Problem 3: Observation input is manual.**
+V2 requires a human to read real-world news, identify relevance to a node, and manually trigger the updater. There is no automated connection between the real world and the DAG. The thesis ages silently.
+
+**Problem 4: Credit assignment is still indirect.**
+When a prediction fails (Z_PREDICTED ≠ Z_ACTUAL), the system knows the outcome was wrong but cannot precisely identify which of the 3-5 upstream axioms caused the failure. Exponential decay distributes blame proportionally to error magnitude, but not proportionally to actual causal contribution. The Duhem-Quine problem is partially mitigated, not solved.
+
+**Problem 5: The DAG is topologically flat.**
+All nodes connect directly to the outcome. There are no intermediate causal nodes. Real causal chains have depth: A causes B which causes C which causes outcome. A flat DAG cannot represent this structure, which means credit assignment across a causal chain is impossible.
+
+**Problem 6: No feedback loop from resolution to axioms.**
+When a prediction resolves in the real world (right or wrong), nothing updates. The axiom store does not learn from resolved predictions. The engine that was wrong about TSMC in 2027 carries the same axioms into its 2028 thesis as if nothing happened.
+
+---
+
+## ABSTRACTION MANDATE (Critical — read before proposing any architecture)
+
+V3 is an architectural mechanism for an epistemic engine. It is NOT a domain model for economics, geopolitics, or any specific subject matter.
+
+The Python falsification suite must demonstrate the architectural mechanism using the SIMPLEST possible simulation — 2-3 variables maximum. Economy-specific variable names (growth_rate, inflation_rate, recession_avoidance), sector-specific constants, and multi-parameter simulation environments are signals that the Mutator is optimizing the test rather than the architecture.
+
+A good V3 test looks like: axiom_A and axiom_B influence P_predicted. After N observations, gradient descent correctly identifies that axiom_A has higher causal contribution than axiom_B. Done. That proves credit assignment without 15 load-bearing variables.
+
+The architectural claim must be domain-agnostic: it must work whether the thesis is about TSMC supply chains, AI inference collapse, or any other domain the engine is applied to. If the mechanism only works for the specific simulation the Mutator built, it is not a V3 architecture — it is a domain model wearing architectural clothing.
+
+---
+
+## LOAD-BEARING CONSTRAINTS (Cannot be violated by V3)
+
+| Constraint | Reason |
+|---|---|
+| Mutator cannot influence its own evaluation | Prevents gaming — V1's core anti-fragility property |
+| All axioms must be numerically ablatable [0.0, 1.0] | Non-ablatable axioms cannot be falsified |
+| Sensitivity attribution must be adversarial, not self-reported | Self-reported sensitivity = information embezzlement |
+| Scoring must be grounded in stdout/stderr only | Prose is unverifiable |
+| RAG latency must not conflate with prediction accuracy | Additive, not multiplicative — V2 constraint |
+| Test simulation complexity must be minimal | Simulation complexity ≠ architectural rigor. Fewer variables = cleaner proof |

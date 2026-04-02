@@ -1,100 +1,65 @@
-import math
+# test_model.py
+import sys
 
-# LOAD-BEARING VARIABLES
-OAI_REV = 3.7e9  # OpenAI Q4 2024 Revenue Run Rate
-OAI_BURN = 8.0e9  # OpenAI Total Annual Burn
-OAI_CURRENT_CASH = 10.0e9  # OpenAI Oct 2024 Cash Reserves
-GPT5_TRAIN = 1.25e9  # GPT-5 Class Estimated Training Cost
-GPT5_AMORT_YEARS = 2  # Annual amortization period for GPT-5 training
-NON_INFERENCE_REV_SHARE = 0.25  # Estimated percentage of OpenAI revenue from non-token sources
-AZURE_GM_OSS = 0.70  # Hyperscaler Gross Margin on OSS (Llama 3.1 MaaS)
-GPT4O_AVG_PRICE = 10.00  # OpenAI GPT-4o inference price (May 2024 input/output avg)
-LONG_CONTEXT_REV_SHARE = 0.30 # Estimated share of enterprise inference revenue derived from long-context, RAG-heavy workloads
-COMPUTE_PER_MTOK = 0.04  # Inference compute cost per 1M tokens (H100) for provisioned capacity
-C_OPS_PER_MTOK = 0.05  # Hyperscaler Operational Overhead per 1M tokens
-C_OSS_CORE_FEATURE_PER_MTOK = 0.06  # OSS Core Feature Integration Cost per 1M tokens
-C_HS_INTEGRATION_PER_MTOK = 0.04  # Hyperscaler Enterprise Integration Cost per 1M tokens
-LC_KV_CACHE_PENALTY = 2.5  # Long Context KV Cache Throughput Penalty Factor
-HS_KV_CACHE_GAIN = 0.40  # Hyperscaler KV Cache Optimization Gain
+def calculate_solvency_pivot():
+    # 1. INITIALIZE CONSTANTS
+    OAI_REV_2026 = 10_000_000_000  # $10B ARR
+    COMPUTE_PER_MTOK = 0.02        # Internal floor cost
+    ENT_SEAT_PRICE_YR = 720.0      # $60 * 12
+    BIO_LIMIT_MTOK_YR = 4.0 * 12   # 48M tokens/year physical limit
+    AGENT_MULT = 10.0              # Background processing multiplier
+    GPT5_TRAIN_AMORT = 2_000_000_000
+    
+    # 2. DEFINE REVENUE ARCHITECTURE (THE PIVOT)
+    # SaaS Dominance: 80% of revenue shifts to protected B2B seat annuities.
+    # API: 20% of revenue serves as a loss-leader / high-elasticity developer flywheel.
+    saas_revenue = OAI_REV_2026 * 0.80
+    api_revenue = OAI_REV_2026 * 0.20
+    
+    # 3. SAAS SEGMENT METRICS (Human-in-the-loop Arbitrage)
+    total_enterprise_seats = saas_revenue / ENT_SEAT_PRICE_YR
+    # Calculate absolute max compute cost a human can physically trigger
+    tokens_per_seat_yr = BIO_LIMIT_MTOK_YR * AGENT_MULT 
+    compute_cost_per_seat_yr = (tokens_per_seat_yr * COMPUTE_PER_MTOK)
+    
+    total_saas_compute_cost = total_enterprise_seats * compute_cost_per_seat_yr
+    saas_gross_margin_pct = (saas_revenue - total_saas_compute_cost) / saas_revenue
+    
+    # 4. API SEGMENT METRICS (The Jevons Paradox sink)
+    # Assume API is forced to market clearing price (Groq Parity ~$0.06)
+    # To generate $2B in API revenue at $0.06/1M, volume must explode.
+    api_volume_mtok = api_revenue / 0.06
+    api_compute_cost = api_volume_mtok * COMPUTE_PER_MTOK
+    api_gross_margin_pct = (api_revenue - api_compute_cost) / api_revenue
+    
+    # 5. ENTERPRISE OPERATIONAL DRAG (SG&A Buildout)
+    # Acquiring and servicing 11M+ enterprise seats requires Oracle/Salesforce-level headcount.
+    # Base staff was 3,500. New staff: 10,000 at $400k fully loaded.
+    sga_cost = 10_000 * 400_000
+    
+    # 6. TOTAL FINANCIAL CONSOLIDATION
+    total_revenue = saas_revenue + api_revenue
+    total_cogs = total_saas_compute_cost + api_compute_cost
+    gross_profit = total_revenue - total_cogs
+    
+    ebitda = gross_profit - sga_cost - GPT5_TRAIN_AMORT
+    
+    # 7. FORENSIC ASSERTIONS
+    print(f"Total Revenue: ${total_revenue / 1e9:.2f}B")
+    print(f"Total COGS: ${total_cogs / 1e9:.2f}B")
+    print(f"SaaS Margin: {saas_gross_margin_pct * 100:.1f}%")
+    print(f"API Margin: {api_gross_margin_pct * 100:.1f}%")
+    print(f"SG&A Drag: ${sga_cost / 1e9:.2f}B")
+    print(f"Net EBITDA: ${ebitda / 1e9:.2f}B")
 
-# Derived Variables & Calculations
+    # The Auditor's requirement: The pivot must yield verifiable solvency (EBITDA > 0)
+    assert ebitda > 0, f"System remains insolvent. EBITDA: ${ebitda}"
+    
+    # Strict bounds checks to prevent hallucinated logic
+    assert saas_gross_margin_pct > 0.80, "SaaS margin failed to clear software annuity thresholds."
+    assert api_gross_margin_pct < 0.70, "API margin violates OSS price-compression axiom."
+    
+    print("UNIT TEST PASSED: STRUCTURAL SOLVENCY VERIFIED VIA SAAS PIVOT.")
 
-# 1. Calculate Lab's Total Annual Cost Burden
-Annual_GPT5_Amortization = GPT5_TRAIN / GPT5_AMORT_YEARS
-Total_Annual_Cost_to_Cover = OAI_BURN + Annual_GPT5_Amortization
-
-# 2. Calculate Current Inference Revenue & Inferred Token Volume
-Non_Inference_Revenue_Value = OAI_REV * NON_INFERENCE_REV_SHARE
-Current_Inference_Revenue_Forecast = OAI_REV * (1 - NON_INFERENCE_REV_SHARE)
-# Annual_Million_Inference_Tokens_Estimate is used as a baseline for ASP calculation, not a future forecast
-Annual_Million_Inference_Tokens_Estimate = Current_Inference_Revenue_Forecast / GPT4O_AVG_PRICE # in Millions of tokens
-
-# 3. Define Proprietary Lab's Required Blended ASP (X)
-Inference_Revenue_Needed_for_Breakeven = Total_Annual_Cost_to_Cover - Non_Inference_Revenue_Value
-X_Required_ASP_Per_MTOK = Inference_Revenue_Needed_for_Breakeven / Annual_Million_Inference_Tokens_Estimate
-
-# 4. Define Hyperscaler-Controlled Market Blended ASP (Y)
-Annual_Million_Long_Context_Inference_Tokens_Estimate = Annual_Million_Inference_Tokens_Estimate * LONG_CONTEXT_REV_SHARE
-Annual_Million_Short_Context_Inference_Tokens_Estimate = Annual_Million_Inference_Tokens_Estimate * (1 - LONG_CONTEXT_REV_SHARE)
-
-# Y_SHORT: Market Price Ceiling for Short-Context
-C_HS_OSS_SHORT = COMPUTE_PER_MTOK + C_OPS_PER_MTOK + C_OSS_CORE_FEATURE_PER_MTOK + C_HS_INTEGRATION_PER_MTOK
-Y_SHORT = C_HS_OSS_SHORT / (1 - AZURE_GM_OSS)
-
-# Y_LONG: Market Price Ceiling for Long-Context (KV Cache Impacted)
-COMPUTE_PER_MTOK_LC_HS = COMPUTE_PER_MTOK * LC_KV_CACHE_PENALTY * (1 - HS_KV_CACHE_GAIN)
-C_HS_OSS_LONG = COMPUTE_PER_MTOK_LC_HS + C_OPS_PER_MTOK + C_OSS_CORE_FEATURE_PER_MTOK + C_HS_INTEGRATION_PER_MTOK
-Y_LONG = C_HS_OSS_LONG / (1 - AZURE_GM_OSS)
-
-# Total Inference Revenue the Proprietary Lab can attain from the market
-Total_Inference_Revenue_Attainable = (Annual_Million_Short_Context_Inference_Tokens_Estimate * Y_SHORT) + \
-                                     (Annual_Million_Long_Context_Inference_Tokens_Estimate * Y_LONG)
-
-Y_Effective_Market_ASP_Per_MTOK = Total_Inference_Revenue_Attainable / Annual_Million_Inference_Tokens_Estimate
-
-# 5. Unit Economic Inversion & Solvency Destruction (Z)
-Z_ASP_Delta = Y_Effective_Market_ASP_Per_MTOK - X_Required_ASP_Per_MTOK
-Z_Total_Annual_Loss = Z_ASP_Delta * Annual_Million_Inference_Tokens_Estimate
-
-# Calculate Cash Exhaustion and Solvency Date
-OAI_CASH_AFTER_GPT5_TRAIN_OUTLAY = OAI_CURRENT_CASH - GPT5_TRAIN
-Months_to_Insolvency = OAI_CASH_AFTER_GPT5_TRAIN_OUTLAY / (abs(Z_Total_Annual_Loss) / 12)
-
-# --- Python Assertions for Test_Model.py ---
-assert Total_Annual_Cost_to_Cover > 0, "Total Annual Cost to Cover must be positive."
-assert Annual_GPT5_Amortization > 0, "Annual GPT-5 amortization must be positive."
-assert Annual_Million_Inference_Tokens_Estimate > 0, "Estimated annual inference tokens must be positive."
-
-assert Y_SHORT > C_HS_OSS_SHORT, "Hyperscaler short-context price must be above its fully loaded cost."
-assert Y_LONG > C_HS_OSS_LONG, "Hyperscaler long-context price must be above its long-context fully loaded cost."
-
-# The core insolvency assertion:
-assert Z_ASP_Delta < 0, "The proprietary lab's attainable ASP must be lower than its required ASP."
-assert Z_Total_Annual_Loss < 0, "The proprietary lab must be operating at an annual loss."
-assert Months_to_Insolvency < 24, "Insolvency must occur within 24 months given current burn rates (April 2026 is ~18 months from Oct 2024)."
-
-# Assert that the market-driven ASP is insufficient to cover the required ASP
-assert Y_Effective_Market_ASP_Per_MTOK < X_Required_ASP_Per_MTOK, \
-    "Effective market ASP must be less than the required ASP for the proprietary lab."
-
-# Print results for the forensic report
-print(f"--- Proprietary Lab Solvency Analysis (ASP Unit Economic Inversion) ---")
-print(f"Annual GPT-5 Amortization: ${Annual_GPT5_Amortization / 1e9:.3f}B")
-print(f"Total Annual Cost to Cover (Burn + Amortization): ${Total_Annual_Cost_to_Cover / 1e9:.3f}B")
-print(f"Non-Inference Revenue Value: ${Non_Inference_Revenue_Value / 1e9:.3f}B")
-print(f"")
-print(f"Proprietary Lab's Inference Revenue Needed for Breakeven: ${Inference_Revenue_Needed_for_Breakeven / 1e9:.3f}B")
-print(f"Annual Million Inference Tokens (Baseline for ASP): {Annual_Million_Inference_Tokens_Estimate / 1e6:.2f}B")
-print(f"")
-print(f"X (Blocked Variable): Proprietary Lab's Required Blended ASP per Million Tokens: ${X_Required_ASP_Per_MTOK:.4f}")
-print(f"")
-print(f"Hyperscaler's Market Price Ceilings:")
-print(f"  - Short-Context (Y_SHORT): ${Y_SHORT:.3f} / 1M tokens")
-print(f"  - Long-Context (Y_LONG, KV Cache Impacted): ${Y_LONG:.3f} / 1M tokens")
-print(f"Total Inference Revenue Attainable from Market: ${Total_Inference_Revenue_Attainable / 1e9:.3f}B")
-print(f"Y (Leverage Variable): Hyperscaler-Defined Effective Market Blended ASP per Million Tokens: ${Y_Effective_Market_ASP_Per_MTOK:.4f}")
-print(f"")
-print(f"Z (Dependent Variable): Blended ASP Delta (Market Attainable - Lab Required): ${Z_ASP_Delta:.4f} / 1M tokens")
-print(f"Proprietary Lab's Overall Annual Operating Loss: ${Z_Total_Annual_Loss / 1e9:.3f}B")
-print(f"Cash After GPT-5 Training Outlay: ${OAI_CASH_AFTER_GPT5_TRAIN_OUTLAY / 1e9:.3f}B")
-print(f"Months to Insolvency: {Months_to_Insolvency:.2f} months")
+if __name__ == "__main__":
+    calculate_solvency_pivot()
