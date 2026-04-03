@@ -125,7 +125,7 @@ Results welcome as issues or PRs.
 @misc{alami2025cognitivecamouflage,
   title   = {Cognitive Camouflage: Specification Gaming in LLM-Generated Code
              Evades Holistic Evaluation but Not Adversarial Execution},
-  author  = {Al-Ami, Daniel},
+  author  = {Alami, Daniel},
   year    = {2025},
   note    = {Preprint. Code: github.com/sparckix/ztare}
 }
@@ -133,4 +133,4 @@ Results welcome as issues or PRs.
 
 ---
 
-*Daniel Al-Ami — MBA Candidate, Harvard Business School*
+*Daniel Alami — MBA Candidate, Harvard Business School*
